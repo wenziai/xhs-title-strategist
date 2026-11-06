@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书标题策略师"
+  short_description: "按内容类型和传播视角生成可信、可点击的小红书标题建议"
+  default_prompt: "Use $xhs-title-strategist to turn my event, experience, idea, product, or draft into Xiaohongshu title options from several useful angles."

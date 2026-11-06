@@ -1,0 +1,73 @@
+{
+  "skill": "xhs-title-strategist",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "event-invite",
+      "type": "should_trigger",
+      "prompt": "周五我在北京组织一场聊 Grok Bot 的 AI 线下活动，帮我从不同视角起小红书标题。",
+      "expected_behavior": "识别为活动邀请，从人群、场景、价值和搜索入口等适配视角生成标题，并给 Top 3。"
+    },
+    {
+      "id": "event-recap",
+      "type": "should_trigger",
+      "prompt": "昨天参加完一场 AI 线下活动，我发现大家真正关心的不是工具，而是怎么把 AI 放进工作流。帮我起标题。",
+      "expected_behavior": "识别为活动复盘，优先使用个人经历、新判断、反差和好奇视角，不写成活动招募。"
+    },
+    {
+      "id": "product-experience",
+      "type": "should_trigger",
+      "prompt": "这款护腰枕我用了三个月，侧睡时腰不再悬空，价格 39.9。给我 10 个小红书标题。",
+      "expected_behavior": "只使用用户提供的时间、体验和价格，覆盖场景、痛点、对比与可信数字，不虚构销量或评价。"
+    },
+    {
+      "id": "thin-input",
+      "type": "edge_case",
+      "prompt": "我周末去了一场活动，帮我起标题。",
+      "expected_behavior": "指出必要假设；如果不知道活动类型会实质影响结果，只问一个简短问题或先提供可调整方向。"
+    },
+    {
+      "id": "scale-up",
+      "type": "should_trigger",
+      "prompt": "把这次亲子露营经历 scale up 成 20 个标题，按不同视角分类。",
+      "expected_behavior": "按视角分组生成不超过 20 条，避免同义改写，并保留 Top 3。"
+    },
+    {
+      "id": "diagnose",
+      "type": "should_trigger",
+      "prompt": "这个标题为什么不想点：北京 AI 线下活动分享。",
+      "expected_behavior": "从相关性、信息差、可信度、搜索词和自然度诊断，再给改写。"
+    },
+    {
+      "id": "account-alignment",
+      "type": "should_trigger",
+      "prompt": "我的账号长期分享小众新潮体验和真实生活选择。今天去了一个 AI 穿搭沙龙，帮我起标题。",
+      "expected_behavior": "标题既要吸引对 AI 穿搭感兴趣的人，也要回到小众体验与真实生活的长期主线；输出一句账号连接和关注理由。"
+    },
+    {
+      "id": "no-fake-trends",
+      "type": "edge_case",
+      "prompt": "顺便告诉我当前小红书最热的 AI 关键词和搜索增长率。",
+      "expected_behavior": "不编造实时热点或增长率；需要当前可靠来源才能回答。"
+    },
+    {
+      "id": "optional-tags",
+      "type": "should_trigger",
+      "prompt": "标题确定后顺便给我几个相关标签。",
+      "expected_behavior": "给少量分类候选，不声称是实时热门，并提醒用户结合发布时的搜索联想、近期内容和账号定位自行筛选。"
+    },
+    {
+      "id": "not-full-post",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这篇小红书正文改得更像真人，并拆成八页图文。",
+      "expected_behavior": "不把任务扩展为标题生成；应由正文或视觉工作流处理。"
+    },
+    {
+      "id": "not-topic-bank",
+      "type": "should_not_trigger",
+      "prompt": "我是 AI 效率账号，帮我规划未来 30 天的选题库和发布排期。",
+      "expected_behavior": "不承担账号级选题与排期，应转到小红书运营工作流。"
+    }
+  ],
+  "minimum_pass_rate": 0.8
+}
